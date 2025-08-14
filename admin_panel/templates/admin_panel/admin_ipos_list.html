@@ -1,0 +1,40 @@
+{% extends "admin_panel/dashboard.html" %}
+
+{% block content %}
+<h2>All IPOs</h2>
+
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company Name</th>
+      <th>Open Date</th>
+      <th>Close Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ipo in ipos %}
+    <tr>
+      <td>{{ ipo.id }}</td>
+      <td>{{ ipo.company_name }}</td>
+      <td>{{ ipo.open_date }}</td>
+      <td>{{ ipo.close_date }}</td>
+      <td>{{ ipo.status }}</td>
+      <td>
+        <a href="{% url 'admin_edit_ipo' ipo.id %}">Edit</a> |
+        <a href="{% url 'admin_delete_ipo' ipo.id %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No IPOs found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'admin_register_ipo' %}">+ Add New IPO</a>
+
+{% endblock %}

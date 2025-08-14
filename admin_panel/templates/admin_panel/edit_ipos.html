@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit IPO - Bluestock</title>
+    <link rel="stylesheet" href="{% static 'admin_panel/css/admin.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="{% static 'images/logo_7.png' %}" class="logo" alt="Bluestock FinTech" style="width: 100%; height: auto;">
+    <h3>Bluestock Fintech</h3>
+  </div>
+
+  <div class="sidebar-title">MENU</div>
+  <ul>
+    <li><a href="{% url 'admin_panel:dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'admin_panel:admin_upcoming_ipos' %}">Manage IPO</a></li>
+    <li><a href="{% url 'admin_panel:admin_register_ipo' %}">Register IPO</a></li>
+    <li><a href="{% url 'admin_panel:admin_users' %}">Users</a></li>
+    <li><a href="{% url 'admin_panel:home' %}">View Site</a></li>
+    <li><a href="{% url 'admin_panel:logout' %}">Logout</a></li>
+  </ul>
+</div>
+
+<div class="main-content">
+    <h1>Edit IPO</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Company Name:</label>
+        <input type="text" name="company_name" value="{{ ipo.company_name }}" required>
+
+        <label>Price Band:</label>
+        <input type="text" name="price_band" value="{{ ipo.price_band }}" required>
+
+        <label>Issue Size:</label>
+        <input type="text" name="issue_size" value="{{ ipo.issue_size }}" required>
+
+        <label>Open Date:</label>
+        <input type="date" name="open_date" value="{{ ipo.open_date|date:'Y-m-d' }}" required>
+
+        <label>Close Date:</label>
+        <input type="date" name="close_date" value="{{ ipo.close_date|date:'Y-m-d' }}" required>
+
+        <label>Status:</label>
+        <select name="status">
+            <option value="Upcoming" {% if ipo.status == 'Upcoming' %}selected{% endif %}>Upcoming</option>
+            <option value="Closed" {% if ipo.status == 'Closed' %}selected{% endif %}>Closed</option>
+        </select>
+
+        <button type="submit">Update IPO</button>
+    </form>
+</div>
+
+</body>
+</html>

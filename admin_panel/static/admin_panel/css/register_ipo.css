@@ -1,0 +1,19 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f9fc;
+}
+
+.nav-link.active {
+  background-color: #eef3ff;
+  border-left: 4px solid #5f0eff;
+  color: #5f0eff !important;
+  font-weight: 600;
+}
+
+h5, h6 {
+  color: #343a40;
+}
+
+input, select {
+  font-size: 14px;
+}

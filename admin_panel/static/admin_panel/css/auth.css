@@ -1,0 +1,94 @@
+body {
+  background: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.primary-btn {
+  background-color: #6500ff;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.google-btn {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 12px;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bottom-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+a {
+  color: #6500ff;
+  text-decoration: none;
+}
+
+a.link-right {
+  float: right;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.terms {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.captcha-box {
+  background: #eee;
+  padding: 20px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #444;
+}

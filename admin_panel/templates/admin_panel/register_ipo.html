@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends 'admin_panel/manage_ipo_base.html' %}
+{% load static %}
+
+{% block content %}
+<h4 class="fw-bold mb-4">Upcoming IPO Information</h4>
+
+<form method="POST" enctype="multipart/form-data" id="ipoForm" class="bg-white p-4 rounded shadow-sm">
+    {% csrf_token %}
+
+    <h5 class="fw-bold mb-3 border-bottom pb-2">IPO Information</h5>
+
+    <!-- Company Logo -->
+    <div class="mb-4">
+        <label class="form-label">Company Logo</label>
+        <div class="d-flex align-items-center gap-3">
+            <img src="{{ ipo.logo.url|default:'/media/logos/default-logo.png' }}" alt="Logo" width="60" height="60" class="rounded-circle border">
+            <input type="file" name="logo" class="form-control w-50">
+            <button class="btn btn-outline-danger" type="button">Delete</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Company Name</label>
+            <input type="text" name="company_name" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Price Band</label>
+            <input type="text" name="price_band" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Open</label>
+            <input type="text" name="open_date" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Close</label>
+            <input type="text" name="close_date" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Issue Size</label>
+            <input type="text" name="issue_size" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Issue Type</label>
+            <select name="issue_type" class="form-select">
+                <option value="">Select</option>
+                <option value="book_building">Book Building</option>
+                <option value="fixed_price">Fixed Price</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Listing Date</label>
+            <input type="date" name="listing_date" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-select">
+                <option value="">Select</option>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+                <option value="upcoming">Upcoming</option>
+            </select>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <h6 class="fw-bold mb-3">New Listed IPO Details (When IPO gets listed)</h6>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">IPO Price</label>
+            <input type="text" name="ipo_price" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Listing Price</label>
+            <input type="text" name="listing_price" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Listing Gain</label>
+            <input type="text" name="listing_gain" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Current Return</label>
+            <input type="text" name="current_return" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">CMP</label>
+            <input type="text" name="cmp" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Final Listing Date</label>
+            <input type="date" name="final_listing_date" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">RHP Link</label>
+            <input type="url" name="rhp_link" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">DRHP Link</label>
+            <input type="url" name="drhp_link" class="form-control">
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="reset" class="btn btn-outline-secondary ms-2">Cancel</button>
+    </div>
+
+</form>
+{% endblock %}

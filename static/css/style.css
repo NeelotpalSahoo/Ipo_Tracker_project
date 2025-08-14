@@ -1,0 +1,476 @@
+/* style.css */
+
+/* Make sure page uses full height flex layout */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Optionally: Some spacing for content */
+main {
+  padding-bottom: 2rem;
+}
+
+/* General body styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Headers */
+h1, h2, h3 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* Navbar brand */
+.navbar-brand {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  border-radius: 8px;
+  background-color: white;
+  padding: 4px;
+}
+
+
+
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Login/Signup Form Container */
+.auth-form {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 90px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+.auth-form h2 {
+  margin-bottom: 25px;
+  color: #0d6efd;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Input Fields */
+.auth-form .form-control {
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Submit Button */
+.auth-form .btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* Link below form (eg: Already have account?) */
+.auth-form .form-text {
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Optional: Small fade animation */
+.auth-form {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* IPO cards */
+.card {
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #212529;
+}
+
+.card-img-top {
+  object-fit: contain;
+  height: 180px;
+  padding: 15px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+
+.card-body p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* Search bar */
+#searchInput {
+  max-width: 400px;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+}
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}
+
+
+.search-input {
+    padding: 8px;
+    width: 250px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/* Media logo on detail page */
+.media-logo {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Download buttons */
+.btn-outline-primary,
+.btn-outline-secondary {
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+/* List group */
+.list-group-item {
+  font-size: 0.95rem;
+}
+
+.footer {
+  background-color: #f8f8f8;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 30px 20px;
+  color: #333;
+  font-size: 14px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-column h4 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.footer-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-left {
+  max-width: 280px;
+  flex: 1;
+}
+
+.footer-right {
+  flex: 2;
+  min-width: 320px;
+}
+
+.footer-right p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.footer-right .disclaimer {
+  font-weight: bold;
+  color: #000;
+}
+
+
+.social-icons a img {
+  width: 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.startup-img {
+  width: 100px;
+  margin-top: 10px;
+}
+
+.footer-info p {
+  margin: 6px 0;
+  color: #444;
+}
+
+.footer-text p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.footer-text .disclaimer {
+  font-weight: bold;
+  color: #000;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #777;
+}
+
+.faq-section {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 40px 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.faq-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.faq-section p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.faq-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+}
+
+.faq-item {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 24px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  color: #333;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 24px 18px;
+  font-size: 15px;
+  color: #444;
+  background: #fff;
+  text-align: left;  /* Make sure text is left aligned */
+}
+
+.faq-answer ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.faq-item .icon {
+  font-size: 24px;
+  margin-left: 12px;
+  color: #007bff;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .icon {
+  transform: rotate(180deg);
+}
+
+
+
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Inter', sans-serif;
+    }
+    .signup-container {
+      max-width: 420px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+    }
+    .signup-logo {
+      height: 50px;
+      display: block;
+      margin: 0 auto 15px;
+    }
+    .signup-title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #1f2937;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      border-radius: 8px;
+      height: 45px;
+      border: 1px solid #d1d5db;
+      padding: 0 12px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .signup-btn {
+      background-color: #5F0EFF;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 8px;
+      height: 45px;
+      width: 100%;
+      border: none;
+      margin-bottom: 15px;
+    }
+    .signup-btn:hover {
+      background-color: #4b0ec8;
+    }
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      height: 45px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 15px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .google-btn img {
+      height: 20px;
+      margin-right: 8px;
+    }
+    .google-btn:hover {
+      background-color: #f3f4f6;
+    }
+    .signup-footer {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .signup-footer a {
+      color: #5F0EFF;
+      text-decoration: none;
+    }
+    .signup-footer a:hover {
+      text-decoration: underline;
+    }
+    .recaptcha-container {
+      margin-bottom: 15px;
+    }

@@ -1,0 +1,45 @@
+/* Reset link styles */
+.navbar a {
+    text-decoration: none;
+    color: #000;  /* black or near black */
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 12px;
+    display: inline-block;
+}
+
+/* When hovered */
+.navbar a:hover {
+    color: #5f0eff;  /* your brand primary color */
+}
+
+/* Active/selected link */
+.navbar a.active {
+    color: #5f0eff;
+}
+
+/* Navbar container */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* Sign Up Button */
+.navbar .signup-btn {
+    background-color: #5f0eff;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-left: 16px;
+    display: inline-block;
+}
+
+.navbar .signup-btn:hover {
+    background-color: #4a0bcf; /* darker on hover */
+}

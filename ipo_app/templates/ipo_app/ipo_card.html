@@ -1,0 +1,148 @@
+{% extends 'ipo_app/home.html' %}
+{% block content %}
+<!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+ <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card-img-top {
+      height: 150px;
+      object-fit: contain;
+    }
+  </style>
+
+
+<main class="container my-5">
+  <!-- Header and Search -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>All IPOs</h2>
+    <input type="text" id="searchInput" class="form-control w-50" placeholder="Search IPO by company name">
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-3" id="ipoTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button">Upcoming IPO</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="ongoing-tab" data-bs-toggle="tab" data-bs-target="#ongoing" type="button">Ongoing IPO</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="listed-tab" data-bs-toggle="tab" data-bs-target="#listed" type="button">Listed IPO</button>
+    </li>
+  </ul>
+
+  <!-- Tab Contents -->
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="upcoming">
+      <div class="row" id="upcomingCards"></div>
+    </div>
+    <div class="tab-pane fade" id="ongoing">
+      <div class="row" id="ongoingCards"></div>
+    </div>
+    <div class="tab-pane fade" id="listed">
+      <div class="row" id="listedCards"></div>
+    </div>
+  </div>
+</main>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script to Fetch IPOs -->
+<script>
+  async function fetchAllIPOs() {
+    const ipos = [];
+    let url = "/api/ipos/";
+    const headers = {
+      'Authorization': 'Token 95e5fce568a5ad76243dd7aea61a6050ce0eb06c',
+      'Content-Type': 'application/json'
+    };
+
+    try {
+      while (url) {
+        const response = await fetch(url, { headers });
+        const result = await response.json();
+
+        console.log("Fetched page:", url, result);
+        if (Array.isArray(result.results)) {
+          ipos.push(...result.results);
+        }
+
+        url = result.next;
+      }
+
+      console.log("All IPOs fetched:", ipos);
+      renderIPOs(ipos);
+    } catch (err) {
+      console.error("Error loading IPOs:", err);
+    }
+  }
+
+  function renderIPOs(ipos) {
+    console.log("Rendering IPOs...");
+    ipos.forEach((ipo, index) => {
+      console.log(`#${index + 1}:`, ipo.company_name, "-", ipo.status);
+    });
+
+    const upcoming = document.getElementById('upcomingCards');
+    const ongoing = document.getElementById('ongoingCards');
+    const listed = document.getElementById('listedCards');
+
+    upcoming.innerHTML = '';
+    ongoing.innerHTML = '';
+    listed.innerHTML = '';
+
+    ipos.forEach(ipo => {
+      const status = ipo.status?.toLowerCase();
+
+      // ✅ Construct image path
+      const imagePath = ipo.logo?.startsWith('http')
+  ? ipo.logo
+  : `/media/logos/${ipo.logo || 'Anlon_LlIoxPM.png','Corona_X5ueOer.jpeg','Earthood_6sS78IJ.jpeg','jinkushal_BgkW6OK.jpeg','logo_dtTRM6l.webp','Pace_digitek_lTz7h9Y.jpegg','prestige_K79Fp28.png','priority_jewels_KQrKiRQ.jpeg','Rayzon_solar_ndFPJ0S.png','urban_company_zHfGvn5.png'}`;  // fallback if empty
+
+      const cardHTML = `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img src="${imagePath}" class="card-img-top" alt="${ipo.company_name}">
+            <div class="card-body">
+              <h5 class="card-title text-primary">${ipo.company_name}</h5>
+              <p><strong>Price Band:</strong> ${ipo.price_band}</p>
+              <p><strong>Open:</strong> ${ipo.open_date} | <strong>Close:</strong> ${ipo.close_date}</p>
+              <p><strong>Issue Size:</strong> ${ipo.issue_size}</p>
+              <p><strong>Issue Type:</strong> ${ipo.issue_type}</p>
+              <p><strong>Listing Date:</strong> ${ipo.listing_date}</p>
+              <span class="badge bg-secondary">${ipo.status}</span>
+              <div class="mt-3 d-flex justify-content-between">
+                ${ipo.rhp_pdf ? `<a href="${ipo.rhp_pdf}" class="btn btn-sm btn-outline-primary" target="_blank">RHP</a>` : ''}
+                ${ipo.drhp_pdf ? `<a href="${ipo.drhp_pdf}" class="btn btn-sm btn-outline-danger" target="_blank">DRHP</a>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // ✅ Append to correct tab
+      if (status === 'upcoming') {
+        upcoming.innerHTML += cardHTML;
+      } else if (status === 'ongoing' || status === 'open') {
+        ongoing.innerHTML += cardHTML;
+      } else if (status === 'closed' || status === 'listed') {
+        listed.innerHTML += cardHTML;
+      } else {
+        console.warn(`Unknown IPO status: "${status}" for company: ${ipo.company_name}`);
+      }
+    });
+
+    // Empty message fallback
+    if (!upcoming.innerHTML.trim()) upcoming.innerHTML = "<p class='text-muted'>No upcoming IPOs available.</p>";
+    if (!ongoing.innerHTML.trim()) ongoing.innerHTML = "<p class='text-muted'>No ongoing IPOs available.</p>";
+    if (!listed.innerHTML.trim()) listed.innerHTML = "<p class='text-muted'>No listed IPOs available.</p>";
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchAllIPOs);
+</script>
+
+{% endblock %}

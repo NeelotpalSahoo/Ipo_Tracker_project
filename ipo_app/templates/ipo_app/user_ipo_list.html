@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All IPOs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .search-input {
+            border-radius: 2rem;
+            padding: 0.5rem 1.5rem;
+            width: 300px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        .tab {
+            border: none;
+            background: none;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: 500;
+        }
+        .tab.active {
+            border-bottom: 2px solid #007bff;
+            color: #000;
+            font-weight: 600;
+        }
+        .ipo-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .ipo-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .text-muted {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-primary">All IPOs</h3>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search IPO by company name">
+    </div>
+
+    <div class="mb-4">
+        <button class="tab active" data-status="Upcoming">Upcoming IPO</button>
+        <button class="tab" data-status="Ongoing">Ongoing IPO</button>
+        <button class="tab" data-status="Listed">Listed IPO</button>
+    </div>
+
+    <div id="ipoContainer">
+        <!-- IPO cards will be loaded here dynamically -->
+    </div>
+</div>
+
+<script>
+    const ipoContainer = document.getElementById('ipoContainer');
+    const searchInput = document.getElementById('searchInput');
+    const tabs = document.querySelectorAll('.tab');
+    let allIPOs = [];
+
+    async function fetchIPOs() {
+        try {
+            const response = await fetch('/admin_panel/api/ipos/');
+            const data = await response.json();
+            allIPOs = data;
+            renderIPOs('Upcoming');
+        } catch (err) {
+            ipoContainer.innerHTML = "<p class='text-danger'>Failed to load IPOs.</p>";
+        }
+    }
+
+    function renderIPOs(filterStatus = 'Upcoming', keyword = '') {
+        ipoContainer.innerHTML = '';
+        const filtered = allIPOs.filter(ipo =>
+            ipo.status.toLowerCase().includes(filterStatus.toLowerCase()) &&
+            ipo.company_name.toLowerCase().includes(keyword.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            ipoContainer.innerHTML = "<p class='text-muted'>No IPOs found.</p>";
+        }
+
+        filtered.forEach(ipo => {
+            const card = document.createElement('div');
+            card.className = 'ipo-card';
+            card.innerHTML = `
+                <div class="ipo-title">${ipo.company_name}</div>
+                <div class="text-muted">Price Band: ${ipo.price_band}</div>
+                <div class="text-muted">Open Date: ${ipo.open_date}</div>
+                <div class="text-muted">Listing Date: ${ipo.listing_date}</div>
+            `;
+            ipoContainer.appendChild(card);
+        });
+    }
+
+    searchInput.addEventListener('input', () => {
+        const keyword = searchInput.value.trim();
+        const activeTab = document.querySelector('.tab.active').getAttribute('data-status');
+        renderIPOs(activeTab, keyword);
+    });
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const status = tab.getAttribute('data-status');
+            renderIPOs(status, searchInput.value.trim());
+        });
+    });
+
+    fetchIPOs();
+</script>
+</body>
+</html>

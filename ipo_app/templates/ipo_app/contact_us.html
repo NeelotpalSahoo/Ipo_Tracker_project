@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact Us - Bluestock</title>
+     <!-- Bootstrap CSS (optional for grid/flex) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+
+<!-- Header (you can include navbar if needed) -->
+<header class="py-3 border-bottom">
+    <div class="container d-flex justify-content-between align-items-center">
+        <img src="{% static 'images/logo.png' %}" alt="Bluestock Logo" height="40">
+        <div class="navbar">
+            <a href="#">IPO</a>
+            <a href="#">Community</a>
+            <a href="#">Products</a>
+            <a href="#">Brokers</a>
+            <a href="#">Live News</a>
+            <a href="#" style="margin-left:auto;">Sign In</a>
+            <a href="#" class="signup-btn">Sign Up Now</a>
+</div>
+
+    </div>
+</header>
+<body class="bg-white">
+
+    <div class="container py-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+          </ol>
+        </nav>
+
+        <!-- Heading -->
+        <h2 class="fw-bold mb-4">How Can We Help You ?</h2>
+
+        <!-- Contact boxes -->
+        <div class="row g-4">
+            <!-- Email -->
+            <div class="col-md-6">
+                <div class="border p-4 rounded shadow-sm">
+                    <h5>Email us</h5>
+                    <p class="text-muted">One of our agents will respond at the earliest</p>
+                    <a href="mailto:hello@bluestock.in" class="btn btn-outline-primary w-100">hello@bluestock.in</a>
+                </div>
+            </div>
+            <!-- Chat -->
+            <div class="col-md-6">
+                <div class="border p-4 rounded shadow-sm">
+                    <h5>Chat us</h5>
+                    <p class="text-muted">Available from 8:00AM to 5:00PM</p>
+                    <a href="#" class="btn btn-outline-primary w-100">Open Chat</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Section -->
+        <div class="bg-primary text-white text-center py-5 mt-5 rounded">
+            <h4>Interact With Us in Our Active Community</h4>
+            <p class="mt-3">Ask questions or discuss anything related to investing or trading in the most active trading & investing community</p>
+            <a href="#" class="btn btn-light fw-bold mt-3">Join Now</a>
+        </div>
+
+        <!-- Mobile App QR -->
+        <div class="mt-5 text-center">
+            <h5>Download Bluestock Mobile App</h5>
+            <img src="{% static 'images/qr-code-placeholder.png' %}" alt="QR Code" style="width: 150px;">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

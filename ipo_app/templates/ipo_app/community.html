@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community - Bluestock</title>
+
+    <!-- Bootstrap CSS (optional for grid/flex) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+
+<!-- Header (you can include navbar if needed) -->
+<header class="py-3 border-bottom">
+    <div class="container d-flex justify-content-between align-items-center">
+        <img src="{% static 'images/logo.png' %}" alt="Bluestock Logo" height="40">
+        <div class="navbar">
+            <a href="#">IPO</a>
+            <a href="#">Community</a>
+            <a href="#">Products</a>
+            <a href="#">Brokers</a>
+            <a href="#">Live News</a>
+            <a href="#" style="margin-left:auto;">Sign In</a>
+            <a href="#" class="signup-btn">Sign Up Now</a>
+</div>
+
+    </div>
+</header>
+   <div class="container py-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Community</li>
+          </ol>
+        </nav>
+
+<!-- Top Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold mb-3">The Most Active Community of Traders & Investors</h2>
+        <p class="mb-4">Join now to interact with thousands of active traders and investors to learn and share your knowledge on our buzzing forum.</p>
+        <a href="#" class="btn btn-primary mb-4">Join Our Community</a>
+
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <!-- Text Column -->
+                <ul class="list-unstyled">
+                    <li>✅ Rich environment for knowledge exchange</li>
+                    <li>✅ Stay connected about the latest stock market</li>
+                    <li>✅ Access exclusive community events, webinars, and meet-ups</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- Chat Mockup Image -->
+                <img src="{% static 'images/chat_mockup.png' %}" alt="Chat Example" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bottom Section -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Team Bluestock Cares</h2>
+        <p class="mb-5">Interact with our members to engage, clarify and contribute</p>
+
+        <div class="row align-items-center">
+            <div class="col-md-6 text-start">
+                <h4 class="fw-bold">Interact With Our Experts</h4>
+                <ul class="list-unstyled mt-3">
+                    <li>⭕ Get valid suggestions</li>
+                    <li>⭕ Raise issues or concerns</li>
+                    <li>⭕ Ask your questions</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- Expert Reply Image -->
+                <img src="{% static 'images/expert_reply.png' %}" alt="Expert Reply" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer (optional) -->
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

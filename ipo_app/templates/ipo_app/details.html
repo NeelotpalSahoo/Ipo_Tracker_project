@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bluestock IPO Details</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="Bluestock Logo" height="40" class="me-2" />
+        Bluestock
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container my-5">
+
+    <!-- Back button -->
+    <a href="/" class="btn btn-secondary mb-4">← Back to Home</a>
+
+    <!-- IPO details -->
+    <div id="ipoDetails" class="card p-4 shadow">
+      <!-- JavaScript will insert IPO details here -->
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-center py-3">
+    <div class="container">
+      © 2025 Bluestock Fintech. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const ipoId = window.location.pathname.split('/').filter(Boolean).pop();
+
+    async function fetchIPODetails() {
+      const res = await fetch(`/api/ipo/${ipoId}/`);
+      const ipo = await res.json();
+
+      const html = `
+        <div class="text-center mb-4">
+          <img src="/media/${ipo.logo}" alt="${ipo.company_name} Logo" class="media-logo mb-3">
+          <h3>${ipo.company_name}</h3>
+        </div>
+
+        <ul class="list-group mb-4">
+          <li class="list-group-item"><strong>Status:</strong> ${ipo.status}</li>
+          <li class="list-group-item"><strong>Price Band:</strong> ${ipo.price_band}</li>
+          <li class="list-group-item"><strong>Open Date:</strong> ${ipo.open_date}</li>
+          <li class="list-group-item"><strong>Close Date:</strong> ${ipo.close_date}</li>
+          <li class="list-group-item"><strong>Issue Size:</strong> ${ipo.issue_size}</li>
+          <li class="list-group-item"><strong>Issue Type:</strong> ${ipo.issue_type}</li>
+          <li class="list-group-item"><strong>Listing Date:</strong> ${ipo.listing_date || '-'}</li>
+          <li class="list-group-item"><strong>IPO Price:</strong> ₹${ipo.ipo_price || '-'}</li>
+          <li class="list-group-item"><strong>Listing Price:</strong> ₹${ipo.listing_price || '-'}</li>
+          <li class="list-group-item"><strong>Current Market Price:</strong> ₹${ipo.current_market_price || '-'}</li>
+          <li class="list-group-item"><strong>Listing Gain:</strong> ${ipo.listing_gain ? ipo.listing_gain + '%' : '-'}</li>
+          <li class="list-group-item"><strong>Current Return:</strong> ${ipo.current_return ? ipo.current_return + '%' : '-'}</li>
+        </ul>
+
+        <div class="d-flex gap-3 flex-wrap">
+          ${ipo.rhp_pdf ? `<a href="/media/${ipo.rhp_pdf}" class="btn btn-outline-primary" target="_blank">📄 Download RHP</a>` : ''}
+          ${ipo.drhp_pdf ? `<a href="/media/${ipo.drhp_pdf}" class="btn btn-outline-secondary" target="_blank">📄 Download DRHP</a>` : ''}
+        </div>
+      `;
+
+      document.getElementById('ipoDetails').innerHTML = html;
+    }
+
+    fetchIPODetails();
+  </script>
+
+</body>
+</html>
